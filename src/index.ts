@@ -4,6 +4,8 @@ import icon from "./assets/icon.png";
 import { getUserAgent } from "./main/userAgent";
 import { SessionManager } from "./main/managers/SessionManager";
 import { runAutoUpdate } from "./autoUpdate";
+import { ElectronBlocker } from '@cliqz/adblocker-electron';
+import fetch from 'cross-fetch'; // required 'fetch'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -25,6 +27,10 @@ const createWindow = (): void => {
     icon: icon,
     minWidth: 500,
     minHeight: 375,
+  });
+
+  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+    blocker.enableBlockingInSession(mainWindow.webContents.session);
   });
 
   // and load the index.html of the app.
