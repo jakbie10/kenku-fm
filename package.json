@@ -56,6 +56,7 @@
     "worklet-loader": "^2.0.0"
   },
   "dependencies": {
+    "@cliqz/adblocker-electron": "^1.25.1",
     "@dnd-kit/core": "3.1.0",
     "@dnd-kit/sortable": "4.0.0",
     "@dnd-kit/utilities": "^3.0.1",
